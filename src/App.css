@@ -3,10 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
 
 *{
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
-    box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -48,7 +44,6 @@ address{
 #navItem{
     cursor: pointer;
     display: inline-block;
-    position: relative;
     transition: 0.5s;
 }
 .navbar-light {
@@ -59,7 +54,7 @@ address{
     background: white;
 }
 #homeCarouselImg {
-    height: 33.33em;
+    max-height: 33.33em;
 }
   
 #carouselCaption {
