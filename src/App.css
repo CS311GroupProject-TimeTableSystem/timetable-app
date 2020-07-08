@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;1,200;1,300;1,400&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.row-header{
+    margin:0px auto;
+    padding:0px auto;
+}
+
+.row-content {
+    margin:0px auto;
+    padding: 50px 0px 50px 0px;
+    border-bottom: 1px ridge;
+    min-height:400px;
+}
+
+.footer{
+    background-color: #222223;
+    margin:0px auto;
+    padding: 20px 0px 20px 0px;
+    color: #AACCFF;
+}
+
+#addr {
+    color: #AACCFF;
+}
+
+address{
+    font-size:80%;
+    margin:0px;
+    color:#0f0f0f;
+}
+#navItem:hover{
+    background: #205aff;
+    border-radius: 2px;
+    padding-right: 5px;
+    padding-inline-start: 5px;
+    margin-left: 5px;
+}
+#navItem{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.navbar-light {
+    background-color: #F4F5F1;
+}
+#homeJumbo {
+    padding-top: 40px;
+    background: white;
+}
+#homeCarouselImg {
+    height: 33.33em;
+}
+  
+#carouselCaption {
+    background-color: black;
+    color: blanchedalmond;
+    opacity: 0.6;
+    width: 100vw;
+    position: relative;
+    margin-left: -50vw;
+    height: 100px;
+    margin-top: 100px;
+    left: 50%;
+}
+
+#carouselCaption p {
+    opacity: 1;
+}
