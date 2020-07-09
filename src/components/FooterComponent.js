@@ -6,7 +6,7 @@ function Footer(props) {
         <div className="footer">
             <div className="container">
                 <div className="row justify-content-center">             
-                    <div className="col-4 col-sm-3">
+                    <div className="col-sm-4">
                         <h5>Links</h5>
                         <ul className="list-unstyled">
                             <li><Link style={{ textDecoration: 'none' }} to="/home" href="#">Home</Link></li>
@@ -15,7 +15,8 @@ function Footer(props) {
                             <li><Link style={{ textDecoration: 'none' }} to="/help" href="#">Help</Link></li>
                         </ul>
                     </div>
-                    <div className="col-7 col-sm-9">
+                    <hr className="d-block d-sm-none"/>
+                    <div className="col-sm-4">
                         <h5>Address</h5>
                         <address id="addr">
                         CP/G Weera Wijaya Wimalarathana M.V.,<br />
@@ -26,6 +27,11 @@ function Footer(props) {
                         <i className="fa fa-envelope fa-lg"></i>: <a href="mailto:test@test.net">
                             test@test.net</a>
                         </address>
+                    </div>
+                    <hr className="d-block d-sm-none"/>
+                    <div className="col-sm-4 d-sm-block d-none">
+                        <p>"Education is what remains after one has forgotten what one has learned in school"<br/> – Albert Einstein - </p>
+                        <p>"Education is the key to success"</p>
                     </div>
                 </div>
                 <div className="row justify-content-center">             
