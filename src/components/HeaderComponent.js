@@ -35,10 +35,8 @@ class Header extends Component {
             <React.Fragment>
                 <Navbar id="navBar" light expand="md">
                 <div className="container">
-                    <NavbarToggler onClick={this.toggleNav}>
-
-                    </NavbarToggler>
                     <NavbarBrand id="navbarBrand" className="mr-auto" href="/home">TIME TABLES</NavbarBrand>
+                    <NavbarToggler id="navToggler" onClick={this.toggleNav}></NavbarToggler>
                     <Collapse isOpen={this.state.isNavOpen} navbar>
                         <Nav className="ml-5" navbar>
                             <NavItem id="navItem" className="ml-2">
@@ -59,6 +57,11 @@ class Header extends Component {
                             <NavItem id="navItem" className="ml-2">
                                 <NavLink className="nav-link" to="/help">
                                     <span className="fa fa-question-circle"></span> Help
+                                </NavLink>
+                            </NavItem>
+                            <NavItem id="navItem" className="ml-2">
+                                <NavLink className="nav-link" to="/signup">
+                                    <span className="fa fa-user-plus"></span> Sign Up
                                 </NavLink>
                             </NavItem>
                         </Nav>

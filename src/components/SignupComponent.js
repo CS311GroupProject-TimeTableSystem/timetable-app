@@ -2,16 +2,16 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function TimeTable(props) {
+function Signup(props) {
     return(
         <div className="container">
             <div className="row">
                 <Breadcrumb>
                     <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
-                    <BreadcrumbItem active>Time Tables</BreadcrumbItem>
+                    <BreadcrumbItem active>Sign Up</BreadcrumbItem>
                 </Breadcrumb>
                 <div className="col-12">
-                    <h3>Time Tables</h3>
+                    <h3>Sign Up</h3>
                     <hr />
                 </div>                
             </div>
@@ -22,4 +22,4 @@ function TimeTable(props) {
     );
 }
 
-export default TimeTable;
+export default Signup;

@@ -6,6 +6,7 @@ import {Switch, Route, Redirect} from 'react-router-dom';
 import TimeTable from './TimetableComponent';
 import Help from './HelpComponent';
 import About from './AboutComponent';
+import Signup from './SignupComponent';
 import { CAROUSELDETAILS } from '../shared/carouselDetails';
 
 class Main extends Component {
@@ -32,6 +33,7 @@ class Main extends Component {
             <Route exact path="/timetables" component={TimeTable}/>
             <Route exact path="/about" component={About}/>
             <Route exact path="/help" component={Help}/>
+            <Route exact path="/signup" component={Signup}/>
             <Redirect to="/home"/>
         </Switch>
         <Footer/>

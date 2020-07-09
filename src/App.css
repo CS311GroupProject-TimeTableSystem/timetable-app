@@ -34,17 +34,9 @@ address{
     margin:0px;
     color:#0f0f0f;
 }
-#navItem:hover{
-    background: #205aff;
-    border-radius: 2px;
-    padding-right: 5px;
-    padding-inline-start: 5px;
-    margin-left: 5px;
-}
-#navItem{
-    cursor: pointer;
-    display: inline-block;
-    transition: 0.5s;
+#navToggler {
+    position: relative;
+    float: right;
 }
 .navbar-light {
     background-color: #F4F5F1;
@@ -71,4 +63,19 @@ address{
 
 #carouselCaption p {
     opacity: 1;
+}
+
+@media (min-width: 480px){
+    #navItem:hover{
+        background: #205aff;
+        border-radius: 2px;
+        padding-right: 5px;
+        padding-inline-start: 5px;
+        margin-left: 5px;
+    }
+    #navItem{
+        cursor: pointer;
+        display: inline-block;
+        transition: 0.5s;
+    }
 }
