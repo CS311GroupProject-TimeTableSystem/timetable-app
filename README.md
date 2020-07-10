@@ -1,4 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Read the project wiki [here](https://github.com/CS311GroupProject-TimeTableSystem/main-project/wiki).
 
 ## Available Scripts
 
