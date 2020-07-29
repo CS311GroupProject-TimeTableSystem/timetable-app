@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input} from 'reactstrap';
 import {NavLink} from 'react-router-dom';
+import { auth, firestore, fireauth, firebasestore } from '../firebase/firebase';
 
 class Header extends Component {
     //<></> means <React.Fragment>
@@ -9,11 +10,13 @@ class Header extends Component {
         super(props);
         this.state = {
             isNavOpen: false,
-            isModalOpen: false
+            isModalOpen: false,
+            isAuthenticated: false
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
     }
     toggleNav() {
         this.setState({
@@ -27,7 +30,32 @@ class Header extends Component {
     }
     handleLogin(event) {
         this.toggleModal();
-        alert("Username: " + this.username.value + " Password: " + this.password.value + " Remember: " + this.remember.checked);
+        auth.signInWithEmailAndPassword(this.username.value, this.password.value)
+        .then(() => {
+            var user = auth.currentUser;
+            this.setState({isAuthenticated: true});
+            console.log('User successfully logged in!');
+            localStorage.setItem('user', JSON.stringify(user));
+        })
+        .catch(error => console.log(error.message));
+        // auth.onAuthStateChanged(function(user) {
+        //     if (user) {
+        //         auth.signOut();
+        //         console.log('User is not signed in');
+        //     } else {
+        //         console.log('User is not signed in');
+        //     }
+        // });
+        event.preventDefault();
+    }
+    handleLogout(event) {
+        auth.signOut().then(() => {
+            this.setState({isAuthenticated: false});
+            console.log('User successfully logged out!');
+        }).catch((error) => {
+            console.log(error);
+        });
+        localStorage.removeItem('user');
         event.preventDefault();
     }
     render() {
@@ -67,9 +95,19 @@ class Header extends Component {
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <Button outline onClick={this.toggleModal}>
-                                    <span className="fa fa-sign-in"></span> Login
-                                </Button>
+                                { !this.state.isAuthenticated ?
+                                    <Button outline onClick={this.toggleModal}>
+                                        <span className="fa fa-sign-in fa-lg"></span> Login
+                                    </Button>
+                                    :
+                                    <div>
+                                    <div className="navbar-text mr-3">{auth.currentUser.email}</div>
+                                    <Button outline onClick={this.handleLogout}>
+                                        <span className="fa fa-sign-out fa-lg"></span> Logout
+                                    </Button>
+                                    </div>
+                                }
+
                             </NavItem>
                         </Nav>
                     </Collapse>
