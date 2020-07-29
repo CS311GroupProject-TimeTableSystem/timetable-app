@@ -11,7 +11,8 @@ class Header extends Component {
         this.state = {
             isNavOpen: false,
             isModalOpen: false,
-            isAuthenticated: false
+            isAuthenticated: false,
+            user: ''
         };
         this.toggleNav = this.toggleNav.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
@@ -30,22 +31,16 @@ class Header extends Component {
     }
     handleLogin(event) {
         this.toggleModal();
+        auth.setPersistence(this.remember.checked ? fireauth.Auth.Persistence.LOCAL : fireauth.Auth.Persistence.SESSION)
+        .then(() =>
         auth.signInWithEmailAndPassword(this.username.value, this.password.value)
         .then(() => {
             var user = auth.currentUser;
             this.setState({isAuthenticated: true});
             console.log('User successfully logged in!');
             localStorage.setItem('user', JSON.stringify(user));
-        })
-        .catch(error => console.log(error.message));
-        // auth.onAuthStateChanged(function(user) {
-        //     if (user) {
-        //         auth.signOut();
-        //         console.log('User is not signed in');
-        //     } else {
-        //         console.log('User is not signed in');
-        //     }
-        // });
+        }))
+        .catch(error => console.log(error));
         event.preventDefault();
     }
     handleLogout(event) {
@@ -58,7 +53,15 @@ class Header extends Component {
         localStorage.removeItem('user');
         event.preventDefault();
     }
+    componentDidMount() {
+        auth.onAuthStateChanged(user => {
+            if(user) {
+                this.setState({isAuthenticated: true, user: user.email});
+            }
+        });
+    }
     render() {
+        
         return(
             <React.Fragment>
                 <Navbar id="navBar" light expand="md">
@@ -87,11 +90,13 @@ class Header extends Component {
                                     <span className="fa fa-question-circle"></span> Help
                                 </NavLink>
                             </NavItem>
+                            { !this.state.isAuthenticated ?
                             <NavItem id="navItem" className="ml-2">
                                 <NavLink className="nav-link" to="/signup">
                                     <span className="fa fa-user-plus"></span> Sign Up
                                 </NavLink>
                             </NavItem>
+                            : null}
                         </Nav>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
@@ -101,10 +106,10 @@ class Header extends Component {
                                     </Button>
                                     :
                                     <div>
-                                    <div className="navbar-text mr-3">{auth.currentUser.email}</div>
-                                    <Button outline onClick={this.handleLogout}>
-                                        <span className="fa fa-sign-out fa-lg"></span> Logout
-                                    </Button>
+                                        <div className="navbar-text mr-3">{this.state.user}</div>
+                                        <Button outline onClick={this.handleLogout}>
+                                            <span className="fa fa-sign-out fa-lg"></span> Logout
+                                        </Button>
                                     </div>
                                 }
 
