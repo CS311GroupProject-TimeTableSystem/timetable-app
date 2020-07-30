@@ -1,22 +1,43 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import {Switch, Route, Redirect, withRouter} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import TimeTable from './TimetableComponent';
 import Help from './HelpComponent';
 import About from './AboutComponent';
 import Signup from './SignupComponent';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { fetchCalendar, fetchNotice, fetchStaff} from '../redux/ActionCreators';
 
-export default function Main(props) {
-
+export default function Main() {
   const carouselDetails = useSelector(state => state.carouselDetails);
+  const calendarDetails = useSelector(state => state.calendarDetails);
+  const staffDetails = useSelector(state => state.staffDetails);
+  const noticeDetails = useSelector(state => state.noticeDetails);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCalendar());
+    dispatch(fetchNotice());
+    dispatch(fetchStaff());
+  }, []);
 
   const HomePage = () => {
-      return(
-          <Home details={carouselDetails}/>
-      );
+    return(
+        <Home 
+          calendar={calendarDetails.calendar}
+          calendarLoading={calendarDetails.isLoading}
+          calendarErrMess={calendarDetails.errMess} 
+          notice={noticeDetails.notice}
+          noticeLoading={noticeDetails.isLoading}
+          noticeErrMess={noticeDetails.errMess}  
+          staff={staffDetails.staff}
+          staffLoading={staffDetails.isLoading}
+          staffErrMess={staffDetails.errMess}   
+          details={carouselDetails}
+        />
+    );
   }
 
   return (

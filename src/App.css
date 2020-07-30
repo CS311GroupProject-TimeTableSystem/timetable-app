@@ -20,7 +20,7 @@
 
 .footer{
     background-color: #222223;
-    margin:0px auto;
+    margin:30px auto;
     padding: 20px 0px 20px 0px;
     color: #AACCFF;
 }
@@ -42,7 +42,8 @@ address{
     background-color: #F4F5F1;
 }
 #homeJumbo {
-    padding-top: 40px;
+    margin-top: 30px;
+    padding-bottom: 0;
     background: white;
 }
 #homeCarouselImg {
@@ -63,6 +64,10 @@ address{
 
 #carouselCaption p {
     opacity: 1;
+}
+
+#homeCard {
+    background-color: #F3F5F4;
 }
 
 @media (min-width: 480px){

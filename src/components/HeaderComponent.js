@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Container} from 'reactstrap';
 import {NavLink} from 'react-router-dom';
 import { auth, firestore, fireauth, firebasestore } from '../firebase/firebase';
 
@@ -64,59 +64,59 @@ class Header extends Component {
         
         return(
             <React.Fragment>
-                <Navbar id="navBar" light expand="md">
-                <div className="container">
-                    <NavbarBrand id="navbarBrand" className="mr-auto" href="/home">TIME TABLES</NavbarBrand>
-                    <NavbarToggler id="navToggler" onClick={this.toggleNav}></NavbarToggler>
-                    <Collapse isOpen={this.state.isNavOpen} navbar>
-                        <Nav className="ml-5" navbar>
-                            <NavItem id="navItem" className="ml-2">
-                                <NavLink className="nav-link" to="/home">
-                                    <span className="fa fa-home"></span> Home
-                                </NavLink>
-                            </NavItem>
-                            <NavItem id="navItem" className="ml-2">
-                                <NavLink className="nav-link" to="/timetables">
-                                    <span className="fa fa-table"></span> Time Tables
-                                </NavLink>
-                            </NavItem>
-                            <NavItem id="navItem" className="ml-2">
-                                <NavLink className="nav-link" to="/about">
-                                    <span className="fa fa-info-circle"></span> About
-                                </NavLink>
-                            </NavItem>
-                            <NavItem id="navItem" className="ml-2">
-                                <NavLink className="nav-link" to="/help">
-                                    <span className="fa fa-question-circle"></span> Help
-                                </NavLink>
-                            </NavItem>
-                            { !this.state.isAuthenticated ?
-                            <NavItem id="navItem" className="ml-2">
-                                <NavLink className="nav-link" to="/signup">
-                                    <span className="fa fa-user-plus"></span> Sign Up
-                                </NavLink>
-                            </NavItem>
-                            : null}
-                        </Nav>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
+                <Navbar id="navBar" light fixed="top" expand="md">
+                    <div className="container">
+                        <NavbarBrand id="navbarBrand" className="mr-auto" href="/home">TIME TABLES</NavbarBrand>
+                        <NavbarToggler id="navToggler" onClick={this.toggleNav}></NavbarToggler>
+                        <Collapse isOpen={this.state.isNavOpen} navbar>
+                            <Nav className="ml-5" navbar>
+                                <NavItem id="navItem" className="ml-2">
+                                    <NavLink className="nav-link" to="/home">
+                                        <span className="fa fa-home"></span> Home
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem id="navItem" className="ml-2">
+                                    <NavLink className="nav-link" to="/timetables">
+                                        <span className="fa fa-table"></span> Time Tables
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem id="navItem" className="ml-2">
+                                    <NavLink className="nav-link" to="/about">
+                                        <span className="fa fa-info-circle"></span> About
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem id="navItem" className="ml-2">
+                                    <NavLink className="nav-link" to="/help">
+                                        <span className="fa fa-question-circle"></span> Help
+                                    </NavLink>
+                                </NavItem>
                                 { !this.state.isAuthenticated ?
-                                    <Button outline onClick={this.toggleModal}>
-                                        <span className="fa fa-sign-in fa-lg"></span> Login
-                                    </Button>
-                                    :
-                                    <div>
-                                        <div className="navbar-text mr-3">{this.state.user}</div>
-                                        <Button outline onClick={this.handleLogout}>
-                                            <span className="fa fa-sign-out fa-lg"></span> Logout
+                                <NavItem id="navItem" className="ml-2">
+                                    <NavLink className="nav-link" to="/signup">
+                                        <span className="fa fa-user-plus"></span> Sign Up
+                                    </NavLink>
+                                </NavItem>
+                                : null}
+                            </Nav>
+                            <Nav className="ml-auto" navbar>
+                                <NavItem>
+                                    { !this.state.isAuthenticated ?
+                                        <Button outline onClick={this.toggleModal}>
+                                            <span className="fa fa-sign-in fa-lg"></span> Login
                                         </Button>
-                                    </div>
-                                }
+                                        :
+                                        <div>
+                                            <div className="navbar-text mr-3">{this.state.user}</div>
+                                            <Button outline onClick={this.handleLogout}>
+                                                <span className="fa fa-sign-out fa-lg"></span> Logout
+                                            </Button>
+                                        </div>
+                                    }
 
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </div>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </div>
                 </Navbar>
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} size="md">
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>

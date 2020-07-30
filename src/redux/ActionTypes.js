@@ -1,1 +1,9 @@
-//action types goes here
+export const CALENDAR_LOADING = 'CAROUSELITEMS_LOADING';
+export const CALENDAR_FAILED = 'CAROUSELITEMS_FALIED';
+export const ADD_CALENDAR = 'ADD_CAROUSELITEMS';
+export const STAFF_LOADING = 'STAFF_LOADING';
+export const STAFF_FAILED = 'STAFF_FAILED';
+export const ADD_STAFF = 'ADD_STAFF';
+export const NOTICE_LOADING = 'NOTICE_LOADING';
+export const NOTICE_FAILED = 'NOTICE_FAILED';
+export const ADD_NOTICE = 'ADD_NOTICE';
