@@ -8,7 +8,7 @@ import Help from './HelpComponent';
 import About from './AboutComponent';
 import Signup from './SignupComponent';
 import {useSelector, useDispatch} from 'react-redux';
-import { fetchCalendar, fetchNotice, fetchStaff} from '../redux/ActionCreators';
+import { fetchCarousel, fetchCalendar, fetchNotice, fetchStaff} from '../redux/ActionCreators';
 
 export default function Main() {
   const carouselDetails = useSelector(state => state.carouselDetails);
@@ -18,6 +18,7 @@ export default function Main() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchCarousel());
     dispatch(fetchCalendar());
     dispatch(fetchNotice());
     dispatch(fetchStaff());
@@ -35,7 +36,9 @@ export default function Main() {
           staff={staffDetails.staff}
           staffLoading={staffDetails.isLoading}
           staffErrMess={staffDetails.errMess}   
-          details={carouselDetails}
+          details={carouselDetails.carousel}
+          carouselLoading={carouselDetails.isLoading}
+          carouselErrMess={carouselDetails.errMess}
         />
     );
   }

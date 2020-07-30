@@ -26,25 +26,41 @@ function RenderCard({item, isLoading, errMess}) {
         );
 }
 
+function RenderCarousel({details, isLoading, errMess}) {
+    if (isLoading) {
+        return(
+            <Loading/>
+        );
+    }
+    else if (errMess) {
+        return(
+            <h4>{errMess}</h4>
+        );
+    }
+    else
+        return(
+            <Carousel id="homeCarousel">
+                {details.map((item) => (
+                    <Carousel.Item key={item.id} id="homeCarouselItem">
+                        <img id="homeCarouselImg" className="d-block w-100" key={item.id} src={item.path} alt={item.name}/>
+                        <Carousel.Caption id="homeCarouselCaption">
+                            <div id="carouselCaption" className="carousel-caption d-none d-md-block">
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
+                            </div>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                ))}
+            </Carousel>
+    );
+}
+
 function Home(props) {
-    console.log("CALENDAR", props.calendar);
     return(
         <div>
             <Jumbotron id="homeJumbo">
                 <div className="container-fluid">
-                    <Carousel id="homeCarousel">
-                        {props.details.map((item) => (
-                            <Carousel.Item key={item.id} id="homeCarouselItem">
-                                <img id="homeCarouselImg" className="d-block w-100" key={item.id} src={item.path} alt={item.name}/>
-                                <Carousel.Caption id="homeCarouselCaption">
-                                    <div id="carouselCaption" className="carousel-caption d-none d-md-block">
-                                        <h3>{item.title}</h3>
-                                        <p>{item.description}</p>
-                                    </div>
-                                </Carousel.Caption>
-                            </Carousel.Item>
-                        ))}
-                    </Carousel>
+                    <RenderCarousel details={props.details} isLoading={props.carouselLoading} errMess={props.carouselErrMess}/>
                 </div>
             </Jumbotron>
             <div>

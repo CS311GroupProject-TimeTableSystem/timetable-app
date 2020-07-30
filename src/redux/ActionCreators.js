@@ -2,6 +2,39 @@ import * as ActionTypes from './ActionTypes';
 import { CALENDAR } from '../shared/calendar';
 import { NOTICE } from '../shared/notice';
 import { STAFF } from '../shared/staff';
+import { CAROUSELDETAILS } from '../shared/carouselDetails';
+import { auth, firestore, fireauth, firebasestore } from '../firebase/firebase';
+
+export const fetchCarousel = () => (dispatch) => {
+    dispatch(carouselLoading(true));
+    console.log("FROM FIRESTORE");
+    firestore.collection('carouselDetails').get()
+    .then((snapshot) => {
+        let carouselDetails = []
+        snapshot.forEach((doc) => {
+            carouselDetails.push(doc.data());
+        });
+        return carouselDetails;
+    })
+    .then(carouselDetails => dispatch(addCarousel(carouselDetails)));
+    // setTimeout(() => {
+    //     dispatch(addCarousel(CAROUSELDETAILS));
+    // }, 2000);
+}
+
+export const carouselLoading = () => ({
+    type: ActionTypes.CAROUSEL_LOADING
+});
+
+export const carouselFailed = (errmess) => ({
+    type: ActionTypes.CAROUSEL_FAILED,
+    payload: errmess
+});
+
+export const addCarousel = (payload) => ({
+    type: ActionTypes.ADD_CAROUSEL,
+    payload: payload
+});
 
 export const fetchCalendar = () => (dispatch) => {
     dispatch(calendarLoading(true));
@@ -20,9 +53,9 @@ export const calendarFailed = (errmess) => ({
     payload: errmess
 });
 
-export const addCalendar = () => ({
+export const addCalendar = (payload) => ({
     type: ActionTypes.ADD_CALENDAR,
-    payload: CALENDAR
+    payload: payload
 });
 
 export const fetchNotice = () => (dispatch) => {
@@ -42,9 +75,9 @@ export const noticeFailed = (errmess) => ({
     payload: errmess
 });
 
-export const addNotice = () => ({
+export const addNotice = (payload) => ({
     type: ActionTypes.ADD_NOTICE,
-    payload: NOTICE
+    payload: payload
 });
 
 export const fetchStaff = () => (dispatch) => {
@@ -64,7 +97,7 @@ export const staffFailed = (errmess) => ({
     payload: errmess
 });
 
-export const addStaff = () => ({
+export const addStaff = (payload) => ({
     type: ActionTypes.ADD_STAFF,
-    payload: STAFF
+    payload: payload
 });

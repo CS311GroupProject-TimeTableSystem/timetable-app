@@ -7,3 +7,6 @@ export const ADD_STAFF = 'ADD_STAFF';
 export const NOTICE_LOADING = 'NOTICE_LOADING';
 export const NOTICE_FAILED = 'NOTICE_FAILED';
 export const ADD_NOTICE = 'ADD_NOTICE';
+export const CAROUSEL_LOADING = 'CAROUSEL_LOADING';
+export const CAROUSEL_FAILED = 'CAROUSEL_FAILED';
+export const ADD_CAROUSEL = 'ADD_CAROUSEL';
