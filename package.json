@@ -12,6 +12,7 @@
     "react": "^16.13.1",
     "react-bootstrap": "^1.1.1",
     "react-dom": "^16.13.1",
+    "react-hook-form": "^6.2.0",
     "react-popper": "^2.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
@@ -40,6 +41,8 @@
     ]
   },
   "devDependencies": {
-    "firebase": "^7.16.1"
+    "css-loader": "^4.2.0",
+    "firebase": "^7.16.1",
+    "style-loader": "^1.2.1"
   }
 }
