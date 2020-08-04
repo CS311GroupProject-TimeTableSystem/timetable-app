@@ -1,4 +1,4 @@
-import React, { createRef } from 'react';
+import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import {Jumbotron} from 'reactstrap';
 import { Card, CardText, CardBody, CardTitle } from 'reactstrap';
@@ -15,7 +15,7 @@ function RenderCard({item, isLoading, errMess}) {
             <h4>{errMess}</h4>
         );
     }
-    else
+    else {
         return(
             <Card id="homeCard">
                 <CardBody>
@@ -24,6 +24,7 @@ function RenderCard({item, isLoading, errMess}) {
                 </CardBody>
             </Card>
         );
+    }
 }
 
 function RenderCarousel({details, isLoading, errMess}) {
@@ -52,10 +53,11 @@ function RenderCarousel({details, isLoading, errMess}) {
                     </Carousel.Item>
                 ))}
             </Carousel>
-    );
+        );
 }
 
 function Home(props) {
+    console.log(props.carouselErrMess);
     return(
         <div>
             <Jumbotron id="homeJumbo">
@@ -63,8 +65,8 @@ function Home(props) {
                     <RenderCarousel details={props.details} isLoading={props.carouselLoading} errMess={props.carouselErrMess}/>
                 </div>
             </Jumbotron>
-            <div>
-                <div className="row align-items-start">
+            <div className="container-fluid">
+                <div id="homeCardRow" className="row align-items-start">
                     <div className="col-12 col-md m-1">
                         <RenderCard item={props.calendar} 
                             isLoading={props.calendarLoading}

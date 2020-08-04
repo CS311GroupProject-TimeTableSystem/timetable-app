@@ -13,7 +13,7 @@ export const carouselDetails = (state = {
             return {...state, isLoading: false, errMess: action.payload, carousel: []};
 
         case ActionTypes.ADD_CAROUSEL:
-            return {...state, isLoading: false, errMess: null, carousel: action.payload};
+            return {...state, isLoading: false, errMess: null, carousel: action.payload.filter(item => item.featured == true)};
 
         default:
             return state;

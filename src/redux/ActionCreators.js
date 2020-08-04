@@ -7,7 +7,7 @@ import { auth, firestore, fireauth, firebasestore } from '../firebase/firebase';
 
 export const fetchCarousel = () => (dispatch) => {
     dispatch(carouselLoading(true));
-    console.log("FROM FIRESTORE");
+
     firestore.collection('carouselDetails').get()
     .then((snapshot) => {
         let carouselDetails = []
@@ -16,10 +16,8 @@ export const fetchCarousel = () => (dispatch) => {
         });
         return carouselDetails;
     })
-    .then(carouselDetails => dispatch(addCarousel(carouselDetails)));
-    // setTimeout(() => {
-    //     dispatch(addCarousel(CAROUSELDETAILS));
-    // }, 2000);
+    .then(carouselDetails => dispatch(addCarousel(carouselDetails)))
+    .catch(error => dispatch(carouselFailed(error)));
 }
 
 export const carouselLoading = () => ({
@@ -39,9 +37,16 @@ export const addCarousel = (payload) => ({
 export const fetchCalendar = () => (dispatch) => {
     dispatch(calendarLoading(true));
 
-    setTimeout(() => {
-        dispatch(addCalendar(CALENDAR));
-    }, 2000);
+    firestore.collection('calendar').get()
+    .then((snapshot) => {
+        let data = [];
+        snapshot.forEach((doc) => {
+            data.push(doc.data());
+        });
+        return data;
+    })
+    .then(data => dispatch(addCalendar(data)))
+    .catch(error => dispatch(calendarFailed(error)));
 }
 
 export const calendarLoading = () => ({
@@ -61,9 +66,16 @@ export const addCalendar = (payload) => ({
 export const fetchNotice = () => (dispatch) => {
     dispatch(noticeLoading(true));
 
-    setTimeout(() => {
-        dispatch(addNotice(NOTICE));
-    }, 2000);
+    firestore.collection('notice').get()
+    .then((snapshot) => {
+        let data = [];
+        snapshot.forEach((doc) => {
+            data.push(doc.data());
+        });
+        return data;
+    })
+    .then(data => dispatch(addNotice(data)))
+    .catch(error => dispatch(noticeFailed(error)));
 }
 
 export const noticeLoading = () => ({
@@ -83,9 +95,16 @@ export const addNotice = (payload) => ({
 export const fetchStaff = () => (dispatch) => {
     dispatch(staffLoading(true));
 
-    setTimeout(() => {
-        dispatch(addStaff(STAFF));
-    }, 2000);
+    firestore.collection('staff').get()
+    .then((snapshot) => {
+        let data = [];
+        snapshot.forEach((doc) => {
+            data.push(doc.data());
+        });
+        return data;
+    })
+    .then(data => dispatch(addStaff(data)))
+    .catch(error => dispatch(staffFailed(error)));
 }
 
 export const staffLoading = () => ({
